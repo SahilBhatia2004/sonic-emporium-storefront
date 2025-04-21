@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 
 const CartSummary: React.FC = () => {
   const { cartTotal } = useCart();
+  // Ensure cartTotal is treated as a number
+  const numericCartTotal: number = cartTotal;
   const shipping = 0; // Free shipping
-  const tax = cartTotal * 0.08; // 8% tax rate
-  const total = cartTotal + shipping + tax;
+  const tax = numericCartTotal * 0.08; // 8% tax rate
+  const total = numericCartTotal + shipping + tax;
 
   return (
     <div className="bg-gray-50 rounded-lg p-6">
@@ -17,7 +19,7 @@ const CartSummary: React.FC = () => {
       <div className="space-y-3 mb-6">
         <div className="flex justify-between">
           <span className="text-gray-600">Subtotal</span>
-          <span>${cartTotal.toFixed(2)}</span>
+          <span>${numericCartTotal.toFixed(2)}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-600">Shipping</span>
