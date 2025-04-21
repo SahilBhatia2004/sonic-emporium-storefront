@@ -5,11 +5,11 @@ import { filters } from '@/data/products';
 
 interface ProductFiltersProps {
   selectedBrands: string[];
-  setSelectedBrands: (brands: string[]) => void;
+  setSelectedBrands: React.Dispatch<React.SetStateAction<string[]>>;
   selectedCategories: string[];
-  setSelectedCategories: (categories: string[]) => void;
+  setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
   selectedPriceRanges: string[];
-  setSelectedPriceRanges: (ranges: string[]) => void;
+  setSelectedPriceRanges: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const ProductFilters: React.FC<ProductFiltersProps> = ({
@@ -21,7 +21,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   setSelectedPriceRanges
 }) => {
   const handleBrandChange = (brand: string) => {
-    setSelectedBrands(prev =>
+    setSelectedBrands((prev) =>
       prev.includes(brand)
         ? prev.filter(b => b !== brand)
         : [...prev, brand]
@@ -29,7 +29,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   };
 
   const handleCategoryChange = (category: string) => {
-    setSelectedCategories(prev =>
+    setSelectedCategories((prev) =>
       prev.includes(category)
         ? prev.filter(c => c !== category)
         : [...prev, category]
@@ -37,7 +37,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   };
 
   const handlePriceRangeChange = (range: string) => {
-    setSelectedPriceRanges(prev =>
+    setSelectedPriceRanges((prev) =>
       prev.includes(range)
         ? prev.filter(r => r !== range)
         : [...prev, range]

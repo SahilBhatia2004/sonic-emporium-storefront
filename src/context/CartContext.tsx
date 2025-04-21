@@ -1,24 +1,13 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { CartItem, Product } from "@/types/types";
+import { CartItem, Product, CartContextType } from "@/types/types";
 import { toast } from "sonner";
-
-interface CartContextType {
-  cart: CartItem[];
-  addToCart: (product: Product, quantity?: number) => void;
-  removeFromCart: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
-  clearCart: () => void;
-  cartTotal: number;
-  cartCount: number;
-}
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [cartTotal, setCartTotal] = useState(0);
-  const [cartCount, setCartCount] = useState(0);
+  const [cartTotal, setCartTotal] = useState<number>(0);
+  const [cartCount, setCartCount] = useState<number>(0);
 
   // Load cart from localStorage on component mount
   useEffect(() => {
